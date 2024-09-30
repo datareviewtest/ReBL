@@ -6,7 +6,7 @@ In this paper, we introduce **ReBL**, a novel feedback-driven approach that leve
 If you have any questions, please do not hesitate to email me at **dbenw96@gmail.com**.  
 
 ### Running the Tool
-1. `.env`: Provide your API key here
+1. `my_gpt.py`: Provide your API key at line 12-13 
 2. Ensure the app is installed and open on your emulator, or you can add a few lines of code to automate the installation and launch process. This is entirely up to your preference.
 3. Run the following command in your terminal: python3 reproduction.py [emulator-id] [path_to_bug_report]
 - e.g. python3 reproduction.py 5554 ./BRs/k9_3255.txt (assumed that your emulator ID is 'emulator-5554').

@@ -1,0 +1,43 @@
+Bug Report Title:
+Crashes with invalid format email address
+
+Bug Report Issue:
+### Expected behavior
+I want to use an internal email adress like "foo@b.2". We use some custom software on our own servers only for internal communication. **It works in Thunderbird.**
+
+### Actual behavior
+(All messages and texts are in german on my device; I don't know the texts if you use K9 in english. I just tried to translate them)
+If I try to add a new email account to K9-Mail (Enter email and password) and tap on one of the two buttons ("Manually" or "Continue") the app will crash with only the message "K-9 Mail has stopped" 
+
+### Steps to reproduce
+1. Open K-9 Mail
+2. Add new email account with "foo@b.2"
+3. Press "Manually" or "Continue"
+4. Crash
+
+### Environment
+K-9 Mail version: 5.403
+
+Android version: 6.0.1
+
+Account type (IMAP, POP3, WebDAV/Exchange): I WANT to use IMAP, but I haven't tried yet, because of the crash.
+
+
+Comments:
+Comment#1:
+`.2` is invalid and will never be valid as far as I understand IDNs application to TLDs.
+
+I don't see value in K-9 supporting the defederation of email like this. I also don't see Thunderbird on its own as a good enough reason to ignore that. I suspect Thunderbird is lack of validation not choice to support this. So it's not a feature to have parity with, more exploitation  of a design flaw.
+
+But we shouldn't crash.
+---
+Comment#2:
+We use Java's `URI` class for `storeUri`. Temporarily we set the hostname part to "mail.b.2" which the `URI` class doesn't like. For hostnames it only accepts the following format (minus the trailing dot):
+
+```java
+// hostname      = domainlabel [ "." ] | 1*( domainlabel "." ) toplabel [ "." ]
+// domainlabel   = alphanum | alphanum *( alphanum | "-" | "_" ) alphanum
+// toplabel      = alpha | alpha *( alphanum | "-" | "_" ) alphanum
+```
+We should change `EmailAddressValidator.EMAIL_ADDRESS_PATTERN` to only accept such hostnames.
+---
