@@ -3,12 +3,16 @@ Welcome to the GitHub repository for the paper "**Feedback-Driven Automated Whol
 
 In this paper, we introduce **ReBL**, a novel feedback-driven approach that leverages GPT-4.0, a large-scale language model, to automatically reproduce Android bug reports. 
 
-# Replication Package
+If you have any questions, please do not hesitate to email me at **dbenw96@gmail.com**.  
 
-The implementation, dataset(bug reports, apks), and results are all availbale.
+### Running the Tool
+1. `.env`: Provide your API key here
+2. Ensure the app is installed and open on your emulator, or you can add a few lines of code to automate the installation and launch process. This is entirely up to your preference.
+3. Run the following command in your terminal: python3 reproduction.py [emulator-id] [path_to_bug_report]
+- e.g. python3 reproduction.py 5554 ./BRs/k9_3255.txt (assumed that your emulator ID is 'emulator-5554').
 
-If you have any questions or suggestions, or if you need to access any data before the repository is fully updated, please do not hesitate to email me at **dbenw96@gmail.com**.
-
+### Demo 
+[![Watch the video](https://img.youtube.com/vi/Wr8EiwpcFTU/maxresdefault.jpg)](https://www.youtube.com/watch?v=Wr8EiwpcFTU)
 
 
 ### Comparison with Baselines (73 Crash Bug Reports) && Non-Crash Bug Reports
